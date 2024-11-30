@@ -7,7 +7,7 @@ const TeamMembers = () => {
     {
       name: "Dr. Wafik Noseir",
       role: "Supervisor | Member of the World Environment Congress",
-      image: "src/data/images/team/Dr.Wafik_noseir.jpg",
+      image: "images/team/Dr.Wafik_noseir.jpg",
       social: {
         linkedin: "https://linkedin.com",
         email: "wafik@greenaura.com"
@@ -16,7 +16,7 @@ const TeamMembers = () => {
     {
       name: "Ahmed Hany",
       role: "Founder & CEO",
-      image: "src/data/images/team/Ahmed_hany.png",
+      image: "images/team/Ahmed_hany.png",
       social: {
         linkedin: "https://linkedin.com",
         github: "https://github.com",
