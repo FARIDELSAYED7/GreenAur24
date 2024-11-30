@@ -9,7 +9,7 @@ export const partners: Partner[] = [
     name: "ICHY",
   },
   {
-    logo: "/src/data/images/partners/Matrix.jpg",
+    logo: "data/images/partners/Matrix.jpg",
     name: "Matrix",
   },
   {
