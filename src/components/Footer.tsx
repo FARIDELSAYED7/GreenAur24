@@ -74,7 +74,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
           <p>&copy; {new Date().getFullYear()} GreenAura. All rights reserved.</p>
         </div>
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+        <div className="mt-12 pt-8 text-center text-gray-400">
           <p>&copy; {new Date().getFullYear()} Created by Farid.</p>
         </div>
       </div>
