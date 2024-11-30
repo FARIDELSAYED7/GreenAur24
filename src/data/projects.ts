@@ -102,8 +102,8 @@ export const Projects: projects[] = [
         ]
     },
     {
-        id: 'Voices For The Planer',
-        title: 'Voices For The Planer',
+        id: 'Voices For The Planet',
+        title: 'Voices For The Planet',
         description: 'A video competition promoting environmental awareness and sustainability.',
         icon: Mic,
         features: [
