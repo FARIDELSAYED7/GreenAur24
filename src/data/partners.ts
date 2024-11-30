@@ -1,11 +1,11 @@
 import type { Partner } from '../types/partner';
 export const partners: Partner[] = [
   {
-    logo: "/src/data/images/partners/Rise.jpg",
+    logo: "images/partners/Rise.jpg",
     name: "Rise",
   },
   {
-    logo: "/src/data/images/partners/ICHY.jpg",
+    logo: "/data/images/partners/ICHY.jpg",
     name: "ICHY",
   },
   {
@@ -13,7 +13,7 @@ export const partners: Partner[] = [
     name: "Matrix",
   },
   {
-    logo: "src/data/images/partners/Microsoft.jpg",
+    logo: "/images/partners/Microsoft.jpg",
     name: "Microsoft",
   },
   {
