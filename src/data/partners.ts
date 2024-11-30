@@ -21,15 +21,15 @@ export const partners: Partner[] = [
     name: "Netizens",
   },
   {
-    logo: "src/data/images/partners/Resala.jpg",
+    logo: "./data/images/partners/Resala.jpg",
     name: "Resala",
   },
   {
-    logo: "src/data/images/partners/ScholarX.jpg",
+    logo: "../images/partners/ScholarX.jpg",
     name: "ScholarX",
   },
   {
-    logo: "src/data/images/partners/Food_bank.jpg",
+    logo: "./images/partners/Food_bank.jpg",
     name: "Food Bank",
   },
   {
