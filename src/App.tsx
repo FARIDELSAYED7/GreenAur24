@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { motion } from 'framer-motion';
 
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -84,15 +84,7 @@ function App() {
           </Helmet>
 
           <Routes>
-            <Route path="/activities" element={
-              <>
-                <Helmet>
-                  <title>Our Environmental Activities | GreenAura</title>
-                  <meta name="description" content="Explore GreenAura's diverse range of student-led environmental activities and initiatives." />
-                </Helmet>
-                <Activities />
-              </>
-            } />
+            <Route path="/activities" element={<Activities />} />
             <Route path="/about" element={
               <>
                 <Helmet>
