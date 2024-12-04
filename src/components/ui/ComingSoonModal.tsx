@@ -11,32 +11,32 @@ const ComingSoonModal = ({ isOpen, onClose }: ComingSoonModalProps) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <>
+        <div className="fixed inset-0 flex items-center justify-center z-50">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/50 z-50"
+            className="absolute inset-0 bg-black/50"
           />
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl p-6 shadow-2xl z-50 w-[90%] max-w-md"
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className="relative bg-white rounded-xl p-8 shadow-2xl w-[90%] max-w-md mx-auto z-10"
           >
             <button
               onClick={onClose}
-              className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
+              className="absolute right-4 top-4 text-gray-500 hover:text-gray-700 transition-colors"
             >
-              <X className="w-5 h-5" />
+              <X className="w-6 h-6" />
             </button>
-            <h2 className="text-2xl font-bold text-center mb-4">Coming Soon!</h2>
-            <p className="text-center text-gray-600">
+            <h2 className="text-3xl font-bold text-center mb-4">Coming Soon!</h2>
+            <p className="text-center text-gray-600 text-lg">
               We're working hard to bring you an amazing new feature. Stay tuned!
             </p>
           </motion.div>
-        </>
+        </div>
       )}
     </AnimatePresence>
   );

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import type { projects } from '../types/projects';
 import Button from './ui/Button';
 import IconWrapper from './ui/IconWrapper';
+import ComingSoonModal from './ui/ComingSoonModal';
 
 interface ProjectsCardProps {
   Project: projects;
@@ -11,6 +12,7 @@ interface ProjectsCardProps {
 
 const ProjectsCard: React.FC<ProjectsCardProps> = ({ Project, index }) => {
   const { icon: Icon } = Project;
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <motion.div
@@ -20,6 +22,7 @@ const ProjectsCard: React.FC<ProjectsCardProps> = ({ Project, index }) => {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
     >
+      <ComingSoonModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <div className="p-8">
         <IconWrapper className="mb-6">
           <Icon className="w-8 h-8 text-green-600" />
@@ -44,7 +47,7 @@ const ProjectsCard: React.FC<ProjectsCardProps> = ({ Project, index }) => {
           ))}
         </ul>
 
-        <Button variant="primary" fullWidth>
+        <Button variant="primary" fullWidth onClick={() => setIsModalOpen(true)}>
           Learn More
         </Button>
       </div>
