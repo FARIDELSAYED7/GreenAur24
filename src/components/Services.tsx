@@ -63,12 +63,39 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <section id="Services" className="py-20 bg-white">
+    <section id="Services" className="py-20 bg-white relative overflow-hidden">
+      {/* Animated background shapes */}
+      <motion.div
+        animate={{
+          rotate: 360,
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+        className="absolute top-20 right-20 w-64 h-64 rounded-full border-4 border-green-100 -z-10 opacity-30"
+      />
+      <motion.div
+        animate={{
+          rotate: -360,
+          scale: [1.2, 1, 1.2],
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+        className="absolute bottom-20 left-20 w-72 h-72 rounded-full border-4 border-green-100 -z-10 opacity-30"
+      />
+
       <div className="container mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
           className="text-4xl font-bold text-center mb-12"
         >
           Our Services
@@ -81,11 +108,20 @@ const Services: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="bg-white rounded-xl shadow-lg p-6 border border-gray-100"
+              whileHover={{ 
+                y: -5,
+                boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+                scale: 1.02
+              }}
+              viewport={{ once: true }}
+              className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 transition-all"
             >
               <div className="flex items-start space-x-4">
-                <div className="bg-green-100 p-3 rounded-lg">
+                <motion.div
+                  whileHover={{ rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.5 }}
+                  className="bg-green-100 p-3 rounded-lg"
+                >
                   {Service.icon === "Youth" && <School className="w-6 h-6 text-green-600" />}
                   {Service.icon === "Campaign" && <Droplets className="w-6 h-6 text-green-600" />}
                   {Service.icon === "Community" && <Sun className="w-6 h-6 text-green-600" />}
@@ -94,23 +130,26 @@ const Services: React.FC = () => {
                   {Service.icon === "Consulting" && <Sun className="w-6 h-6 text-green-600" />}
                   {Service.icon === "Eco-Tourism" && <Sun className="w-6 h-6 text-green-600" />}
                   {Service.icon === "Partnership" && <Sun className="w-6 h-6 text-green-600" />}
-                </div>
+                </motion.div>
                 <div className="flex-1">
-                  <span className="text-sm font-medium text-green-600 bg-green-50 px-3 py-1 rounded-full">
+                  <motion.span
+                    whileHover={{ scale: 1.05 }}
+                    className="text-sm font-medium text-green-600 bg-green-50 px-3 py-1 rounded-full inline-block mb-2"
+                  >
                     {Service.category}
-                  </span>
-                  <h3 className="text-xl font-semibold mt-2 mb-2">{Service.title}</h3>
-                  <p className="text-gray-600 mb-4">{Service.description}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-500">{Service.stats}</span>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="text-green-600 hover:text-green-700 font-medium"
-                    >
-                      Learn More →
-                    </motion.button>
-                  </div>
+                  </motion.span>
+                  <motion.h3
+                    className="text-xl font-semibold mb-2 text-gray-800"
+                  >
+                    {Service.title}
+                  </motion.h3>
+                  <p className="text-gray-600">{Service.description}</p>
+                  <motion.p
+                    whileHover={{ scale: 1.02 }}
+                    className="text-green-600 font-medium mt-2"
+                  >
+                    {Service.stats}
+                  </motion.p>
                 </div>
               </div>
             </motion.div>
@@ -121,5 +160,4 @@ const Services: React.FC = () => {
   );
 };
 
-export default Services
-;
+export default Services;

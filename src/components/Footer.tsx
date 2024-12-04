@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { socialAccounts } from '../data/socialAccounts';
 
 const Footer = () => {
   return (
@@ -39,16 +40,21 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Connect</h4>
             <div className="flex space-x-4">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, index) => (
-                <motion.a
-                  key={index}
-                  whileHover={{ y: -5 }}
-                  href="#"
-                  className="text-gray-400 hover:text-green-400 transition-colors"
-                >
-                  <Icon className="w-6 h-6" />
-                </motion.a>
-              ))}
+              {socialAccounts.map((account) => {
+                const Icon = account.icon;
+                return (
+                  <motion.a
+                    key={account.name}
+                    whileHover={{ y: -5 }}
+                    href={account.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-green-400 transition-colors"
+                  >
+                    <Icon className="w-6 h-6" />
+                  </motion.a>
+                );
+              })}
             </div>
           </div>
           
