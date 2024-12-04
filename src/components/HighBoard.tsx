@@ -1,14 +1,51 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowLeft, ChevronDown } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowLeft, ChevronDown, X } from 'lucide-react';
 import { highBoardSeasons } from '../data/highBoard';
 import { Link } from 'react-router-dom';
 
 const HighBoard = () => {
   const [selectedSeason, setSelectedSeason] = useState(highBoardSeasons[0].id);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isComingSoonOpen, setIsComingSoonOpen] = useState(false);
 
   const currentSeason = highBoardSeasons.find(season => season.id === selectedSeason)!;
+
+  // Coming Soon Modal Component
+  const ComingSoonModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+    return (
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={onClose}
+              className="fixed inset-0 bg-black/50 z-50"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl p-6 shadow-2xl z-50 w-[90%] max-w-md"
+            >
+              <button
+                onClick={onClose}
+                className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <h2 className="text-2xl font-bold text-center mb-4">Coming Soon!</h2>
+              <p className="text-center text-gray-600">
+                We're working hard to bring you an amazing new feature. Stay tuned!
+              </p>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-20">
@@ -89,7 +126,10 @@ const HighBoard = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="group h-[400px] [perspective:1000px]"
-                    onClick={() => setIsFlipped(!isFlipped)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsComingSoonOpen(true);
+                    }}
                   >
                     <div className={`relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] ${isFlipped ? '[transform:rotateY(180deg)]' : ''} md:group-hover:[transform:rotateY(180deg)]`}>
                       {/* Front of the card */}
@@ -163,6 +203,11 @@ const HighBoard = () => {
           </AnimatePresence>
         </div>
       </div>
+      
+      <ComingSoonModal 
+        isOpen={isComingSoonOpen}
+        onClose={() => setIsComingSoonOpen(false)}
+      />
     </div>
   );
 };

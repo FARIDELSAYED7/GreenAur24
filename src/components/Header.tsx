@@ -1,31 +1,45 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Link as ScrollLink, scroller } from 'react-scroll';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   const menuItems = [
     { name: 'About', path: 'about' },
-    { name: 'Events', path: 'events' },
-    { name: 'Projects', path: 'projects' },
     { name: 'Team', path: 'team' },
+    { name: 'Partners', path: 'partners' },
+    { name: 'Projects', path: 'projects' },
+    { name: 'Services', path: 'services' },
+    { name: 'Events', path: 'events' },
+    { name: 'Contact', path: 'contact' },
     { name: 'Activities', path: '/activities' },
-    { name: 'Contact', path: 'contact' }
   ];
 
-  const handleScroll = (path: string) => {
+  const handleNavigation = (path: string) => {
     setIsOpen(false);
-    if (!path.startsWith('/')) {
-      scroller.scrollTo(path, {
-        duration: 800,
-        delay: 0,
-        smooth: 'easeInOutQuart',
-        offset: -100
-      });
+    
+    if (path.startsWith('/')) {
+      return; // Let the Link component handle the navigation
     }
+
+    if (!isHomePage) {
+      // If we're not on the home page, first navigate to home then scroll
+      window.location.href = `/#${path}`;
+      return;
+    }
+
+    // On home page, just scroll to the section
+    scroller.scrollTo(path, {
+      duration: 800,
+      delay: 0,
+      smooth: 'easeInOutQuart',
+      offset: -100,
+    });
   };
 
   return (
@@ -40,12 +54,13 @@ const Header = () => {
           <Link to="/">
             <motion.h1 
               whileHover={{ scale: 1.05 }}
-              className="text-2xl font-bold text-green-700"
+              className="text-2xl font-extrabold text-green-700"
             >
               GreenAura
             </motion.h1>
           </Link>
           
+          {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {menuItems.map((item) => (
               <motion.div 
@@ -53,31 +68,29 @@ const Header = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {!item.path.startsWith('/') ? (
-                  <ScrollLink
-                    to={item.path}
-                    spy={true}
-                    smooth={true}
-                    offset={-100}
-                    duration={800}
-                    className="text-gray-700 hover:text-green-600 transition-colors cursor-pointer"
-                  >
-                    {item.name}
-                  </ScrollLink>
-                ) : (
+                {item.path.startsWith('/') ? (
                   <Link
                     to={item.path}
-                    className="text-gray-700 hover:text-green-600 transition-colors"
+                    className="text-black-600 font-semibold hover:text-green-700 transition-colors"
+                    onClick={() => setIsOpen(false)}
                   >
                     {item.name}
                   </Link>
+                ) : (
+                  <div
+                    className="text-black-600 font-semibold hover:text-green-700 transition-colors cursor-pointer"
+                    onClick={() => handleNavigation(item.path)}
+                  >
+                    {item.name}
+                  </div>
                 )}
               </motion.div>
             ))}
           </div>
 
+          {/* Mobile Menu Button */}
           <motion.button 
-            className="md:hidden p-2"
+            className="md:hidden p-2 text-black 600"
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(!isOpen)}
           >
@@ -85,6 +98,7 @@ const Header = () => {
           </motion.button>
         </div>
 
+        {/* Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -100,21 +114,21 @@ const Header = () => {
                   whileHover={{ x: 10 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {!item.path.startsWith('/') ? (
-                    <div
-                      className="block text-gray-700 hover:text-green-600 transition-colors cursor-pointer"
-                      onClick={() => handleScroll(item.path)}
-                    >
-                      {item.name}
-                    </div>
-                  ) : (
+                  {item.path.startsWith('/') ? (
                     <Link
                       to={item.path}
-                      className="block text-gray-700 hover:text-green-600 transition-colors"
+                      className="block text-black font-semibold hover:text-gray-700 transition-colors"
                       onClick={() => setIsOpen(false)}
                     >
                       {item.name}
                     </Link>
+                  ) : (
+                    <div
+                      className="block text-black font-semibold hover:text-gray-700 transition-colors cursor-pointer"
+                      onClick={() => handleNavigation(item.path)}
+                    >
+                      {item.name}
+                    </div>
                   )}
                 </motion.div>
               ))}

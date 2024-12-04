@@ -80,8 +80,19 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
           <p>&copy; {new Date().getFullYear()} GreenAura. All rights reserved.</p>
         </div>
-        <div className="text-center text-blue-400">
-          <p>Created by Farid</p>
+        <div className="flex items-center justify-center space-x-2">
+          <p className="text-gray-400">Handcrafted by</p>
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            href="https://www.linkedin.com/in/faridelsayed-a13b65300/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center space-x-2"
+          >
+            <Linkedin className="w-6 h-6" />
+            <p className="text-blue-400">Farid Elsayed</p>
+          </motion.a>
         </div>
       </div>
     </footer>

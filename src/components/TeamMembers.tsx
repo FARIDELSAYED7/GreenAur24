@@ -3,8 +3,11 @@ import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Users } from 'lucide-react';
 import { teamMembers } from '../data/teamMembers';
 import { Link } from 'react-router-dom';
+import SectionTitle from './ui/SectionTitle';
+import ComingSoonModal from './ui/ComingSoonModal';
 
 const TeamMembers = () => {
+  const [isComingSoonOpen, setIsComingSoonOpen] = useState(false);
   return (
     <section id="team" className="py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-6">
@@ -92,23 +95,19 @@ const TeamMembers = () => {
           })}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex justify-center"
-        >
-          <Link to="/high-board">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 bg-green-600 text-white px-8 py-4 rounded-full hover:bg-green-700 transition-colors text-lg font-medium shadow-lg"
-            >
-              <Users className="w-6 h-6" />
-              View High Board Members
-            </motion.button>
-          </Link>
-        </motion.div>
+        <div className="text-center mt-12">
+          <button
+            onClick={() => setIsComingSoonOpen(true)}
+            className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+          >
+            View High Board Members
+          </button>
+        </div>
+
+        <ComingSoonModal 
+          isOpen={isComingSoonOpen}
+          onClose={() => setIsComingSoonOpen(false)}
+        />
       </div>
     </section>
   );

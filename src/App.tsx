@@ -20,7 +20,7 @@ function App() {
       <div className="min-h-screen bg-white">
         <Routes>
           <Route path="/activities" element={<Activities />} />
-          <Route path="/high-board" element={<HighBoard />} />
+          {/* High board route removed as it's a future feature */}
           <Route path="/" element={
             <>
               <Header />
