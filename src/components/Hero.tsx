@@ -64,31 +64,26 @@ const Hero = () => {
       variants={backgroundVariants}
       className="min-h-screen pt-16 bg-gradient-to-b from-green-50 via-white to-green-50 relative overflow-hidden"
     >
-      {/* Animated background elements */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.1, 0.2, 0.1],
+      {/* Optimized Animated Background Elements */}
+      <div 
+        className="absolute top-20 right-20 w-64 h-64 rounded-full bg-green-200 blur-3xl opacity-10" 
+        style={{ 
+          backgroundImage: 'url("/images/background-element-1.webp")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="absolute top-20 right-20 w-64 h-64 rounded-full bg-green-200 blur-3xl"
+        role="img"
+        aria-label="Decorative green background element"
       />
-      <motion.div
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.1, 0.2, 0.1],
+      <div 
+        className="absolute bottom-20 left-20 w-64 h-64 rounded-full bg-green-100 blur-3xl opacity-10" 
+        style={{ 
+          backgroundImage: 'url("/images/background-element-2.webp")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1
-        }}
-        className="absolute bottom-20 left-20 w-64 h-64 rounded-full bg-green-100 blur-3xl"
+        role="img"
+        aria-label="Decorative green background element"
       />
 
       <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-20 relative z-10">
@@ -167,7 +162,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
                 src="/images/main.png"
-                alt="Nature"
+                alt="Environmental landscape with green trees and sustainable elements"
                 className="rounded-2xl shadow-2xl w-full"
               />
             </motion.div>
